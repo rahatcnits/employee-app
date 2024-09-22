@@ -4,14 +4,18 @@ const { cloudinaryFileUploader } = require("../middlewares/FileUploader");
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send("Employee");
-});
-
+router.get("/", EmployeeController.getAllEmployee);
 router.post(
-  "/createEmployee",
+  "/",
   cloudinaryFileUploader.single("profileImage"),
   EmployeeController.createEmployee
 );
+router.put(
+  "/:id",
+  cloudinaryFileUploader.single("profileImage"),
+  EmployeeController.updateEmployee
+);
+router.get("/:id", EmployeeController.getEmployeeById);
+router.delete("/:id", EmployeeController.deleteEmployeeById);
 
 module.exports = router;

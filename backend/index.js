@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 dotenv.config();
 const mongoose = require("mongoose");
+const cors = require("cors");
 const router = require("./src/routes/EmployeeRoutes");
 const app = express();
 
@@ -19,6 +20,7 @@ mongoose
   });
 
 app.use(express.json());
+app.use(cors());
 
 app.use("/api/employee", router);
 
